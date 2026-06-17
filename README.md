@@ -10,7 +10,7 @@ Backend do **Sistema Inteligente de Controle de Chaves com RFID**, desenvolvido 
 |---------------|------------------------------|
 | Runtime       | Node.js ≥ 18                 |
 | Framework     | Express.js                   |
-| Banco de dados| PostgreSQL                   |
+| Banco de dados| mySQL                   |
 | Autenticação  | JWT (jsonwebtoken)           |
 | Segurança     | Helmet, CORS, Rate Limiting  |
 | Validação     | express-validator            |
@@ -26,7 +26,7 @@ npm install
 
 # 2. Configure o ambiente
 cp .env.example .env
-# Edite o .env com as credenciais do seu banco PostgreSQL
+# Edite o .env com as credenciais do seu banco MySQL
 
 # 3. Crie as tabelas
 npm run db:migrate
@@ -52,7 +52,7 @@ smartclass-backend/
 │   └── seed.js             # Dados iniciais de desenvolvimento
 └── src/
     ├── config/
-    │   └── database.js     # Pool de conexão PostgreSQL
+    │   └── database.js     # Pool de conexão MySQL
     ├── controllers/
     │   ├── authController.js
     │   ├── userController.js
@@ -107,7 +107,7 @@ O token é obtido via `POST /api/auth/login`.
 **POST /api/auth/login**
 ```json
 // Request
-{ "email": "marina.souza@edu.pe.senac.br", "password": "senha123" }
+{ "email": "marina.souza@edu.pe.senac.br", "password": "******" }
 
 // Response 200
 {
@@ -135,7 +135,7 @@ O token é obtido via `POST /api/auth/login`.
   "email": "carlos@edu.pe.senac.br",
   "cpf": "222.222.222-22",
   "category": "Professor",
-  "password": "senha123"
+  "password": "******"
 }
 ```
 
@@ -248,20 +248,3 @@ O ESP32 deve acionar o **buzzer** com beep de sucesso quando `success: true`, e 
 ```
 
 ---
-
-## Variáveis de ambiente
-
-| Variável                 | Descrição                                      | Exemplo                    |
-|--------------------------|------------------------------------------------|----------------------------|
-| `PORT`                   | Porta do servidor                              | `3000`                     |
-| `NODE_ENV`               | Ambiente                                       | `development` / `production` |
-| `DB_HOST`                | Host do PostgreSQL                             | `localhost`                |
-| `DB_PORT`                | Porta do PostgreSQL                            | `5432`                     |
-| `DB_USER`                | Usuário do banco                               | `postgres`                 |
-| `DB_PASSWORD`            | Senha do banco                                 | `—`                        |
-| `DB_NAME`                | Nome do banco                                  | `smartclass`               |
-| `JWT_SECRET`             | Chave secreta para assinar tokens              | String longa aleatória     |
-| `JWT_EXPIRES_IN`         | Tempo de expiração do token                    | `8h`                       |
-| `CORS_ORIGIN`            | Origem(ns) permitida(s)                        | `http://localhost:5173`    |
-| `IOT_SECRET_KEY`         | Chave de autenticação do ESP32                 | String aleatória           |
-| `RFID_READ_TIMEOUT_SECONDS` | Janela de leitura RFID após login          | `30`                       |
