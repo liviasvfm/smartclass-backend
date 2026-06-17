@@ -39,8 +39,6 @@ npm run dev        # desenvolvimento (nodemon)
 npm start          # produção
 ```
 
-O servidor sobe em `http://localhost:3000`.
-
 ---
 
 ## Estrutura de Pastas
