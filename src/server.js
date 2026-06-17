@@ -18,6 +18,8 @@ const { startAlertScheduler } = require('./utils/alertScheduler');
 
 const app = express();
 
+app.set('trust proxy', 1);
+
 // ─── Segurança ─────────────────────────────────────────────────────────────
 app.use(helmet());
 
